@@ -111,7 +111,6 @@ my-next-app/
 │   └── libs/                        # External library configurations
 ├── .eslintrc.json
 ├── .prettierrc
-├── tailwind.config.js
 ├── postcss.config.js
 ├── lint-staged.config.js
 ├── commitlint.config.js
