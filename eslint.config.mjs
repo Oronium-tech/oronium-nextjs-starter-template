@@ -10,15 +10,32 @@ const compat = new FlatCompat({
 })
 
 const eslintConfig = [
+  // Next.js core web vitals (via FlatCompat bridge)
   ...compat.extends("next/core-web-vitals"),
+
+  // ─── General rules (all JS / TS files) ───────────────────────────────────
   {
     rules: {
-      // ✅ Naming conventions
-      camelcase: ["error", { properties: "always" }], // enforce camelCase vars
-      "new-cap": ["error", { newIsCap: true }], // enforce PascalCase for components
-      "no-console": ["error", { allow: ["warn", "error"] }], // block console.log
+      // Enforce camelCase for variables/properties
+      camelcase: ["error", { properties: "always" }],
 
-      // ✅ Imports: enforce shared/ui vs feature-specific
+      // PascalCase for constructors and React components
+      "new-cap": ["error", { newIsCap: true }],
+
+      // Block console.log; allow warn and error
+      "no-console": ["error", { allow: ["warn", "error"] }],
+
+      // Error on unused variables and imports (ignores those starting with an underscore)
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+
+      // Enforce absolute imports — no cross-feature relative imports
       "no-restricted-imports": [
         "error",
         {
@@ -26,19 +43,11 @@ const eslintConfig = [
             {
               group: ["../*"],
               message:
-                "❌ Avoid relative imports across features, use @/components/... instead.",
+                "Avoid relative imports across features, use @/... instead.",
             },
           ],
         },
       ],
-    },
-    settings: {
-      "import/resolver": {
-        alias: {
-          map: [["@", "./src"]],
-          extensions: [".js", ".jsx", ".ts", ".tsx"],
-        },
-      },
     },
   },
 ]
