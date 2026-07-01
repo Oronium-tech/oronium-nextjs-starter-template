@@ -1,21 +1,46 @@
 import { dirname } from "path"
 import { fileURLToPath } from "url"
-import { FlatCompat } from "@eslint/eslintrc"
+import checkFile from "eslint-plugin-check-file"
+import nextConfig from "eslint-config-next/core-web-vitals"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-})
 
 const eslintConfig = [
-  // Next.js core web vitals (via FlatCompat bridge)
-  ...compat.extends("next/core-web-vitals"),
+  {
+    ignores: [".next/**", "node_modules/**"],
+  },
+  ...nextConfig,
 
   // ─── General rules (all JS / TS files) ───────────────────────────────────
   {
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    plugins: {
+      "check-file": checkFile,
+    },
     rules: {
+      // File and folder naming rules
+      "check-file/filename-naming-convention": [
+        "error",
+        {
+          "**/components/**/*": "PASCAL_CASE",
+        },
+      ],
+      "check-file/folder-naming-convention": [
+        "error",
+        {
+          "src/app/**/": "NEXT_JS_APP_ROUTER_CASE",
+          "src/!(app)/**/": "KEBAB_CASE",
+        },
+      ],
+
       // Enforce camelCase for variables/properties
       camelcase: ["error", { properties: "always" }],
 

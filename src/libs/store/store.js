@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit"
-import commonDataReducer from "../slices/commonDataSlice"
+import commonDataReducer from "@/libs/slices/commonDataSlice"
 const store = configureStore({
   reducer: {
     commonData: commonDataReducer,
