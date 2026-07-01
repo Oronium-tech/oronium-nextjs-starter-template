@@ -6,7 +6,6 @@ import nextConfig from "eslint-config-next/core-web-vitals"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-
 const eslintConfig = [
   {
     ignores: [".next/**", "node_modules/**"],

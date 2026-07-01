@@ -1,0 +1,11 @@
+# Ignore build output and cache
+.next
+out
+build
+dist
+
+# Ignore node modules
+node_modules
+
+# Ignore specific files (example)
+package-lock.json
