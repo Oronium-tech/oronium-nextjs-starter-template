@@ -41,6 +41,10 @@ const eslintConfig = [
         },
       ],
 
+      // Formatting rules
+      semi: ["error", "never"],
+      quotes: ["error", "double"],
+
       // Enforce camelCase for variables/properties
       camelcase: ["error", { properties: "always" }],
 
