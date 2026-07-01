@@ -30,6 +30,7 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
     "@typescript-eslint/parser": "^8.42.0",
+    "baseline-browser-mapping": "^2.10.40",
     "commitlint": "^19.8.1",
     "eslint": "^9",
     "eslint-config-next": "^16.0.10",
